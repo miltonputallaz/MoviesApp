@@ -1,0 +1,13 @@
+//
+//  Development.xcconfig
+//  MoviesApp
+//
+//  Created by Milton Putallaz on 25/06/2021.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+BASE_URL=http:/$()/api.themoviedb.org/3
+BASE_MINI_IMAGES_URL=https:/$()/image.tmdb.org/t/p/w500
+BASE_IMAGES_URL=https:/$()/image.tmdb.org/t/p/original
+MOVIES_KEY=6014e5963a47e277a0bdf649c187c9a1

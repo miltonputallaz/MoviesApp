@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cQT-es-Guq">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="75i-Bv-Uvq">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cellId" id="JnJ-5Y-6sm" customClass="CategoryRow" customModule="MoviesApp" customModuleProvider="target">
                                         <rect key="frame" x="20" y="49.5" width="374" height="43.5"/>
@@ -87,7 +87,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.8993028998374939" green="0.90301436185836792" blue="0.97138935327529907" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
-                                            <outlet property="moviesCollectionView" destination="vbD-ko-iEo" id="YLs-bu-NDj"/>
+                                            <outlet property="moviesCollectionView" destination="vbD-ko-iEo" id="A8P-2X-Xnw"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -102,13 +102,15 @@
                             <constraint firstItem="75i-Bv-Uvq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="dnd-FT-EIl"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Hog-Em-aht"/>
                     <connections>
                         <outlet property="moviesTableView" destination="75i-Bv-Uvq" id="s98-TZ-ULX"/>
+                        <segue destination="jBi-wu-f8O" kind="show" identifier="goToMovieDetail" id="RX7-MV-oTi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="18.840579710144929" y="69.642857142857139"/>
+            <point key="canvasLocation" x="114" y="-4"/>
         </scene>
         <!--Movie Detail View-->
         <scene sceneID="jvp-DE-UTT">
@@ -120,10 +122,27 @@
                         <viewLayoutGuide key="safeArea" id="GUo-zD-A5H"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="OCF-jZ-Igz"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pxx-cB-nkk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1052" y="70"/>
+            <point key="canvasLocation" x="980" y="-4"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="XcH-kH-hwU">
+            <objects>
+                <navigationController id="cQT-es-Guq" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nu4-Iw-4Sh">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Cl4-yu-spt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ren-es-e1f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-751" y="-4"/>
         </scene>
     </scenes>
     <resources>

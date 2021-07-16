@@ -7,7 +7,8 @@
 
 import UIKit
 
-class HomeView: UIViewController, UITableViewDataSource, HomeViewDelegate {
+class HomeView: UIViewController, UITableViewDataSource, ClickItemDelegate, HomeViewDelegate {
+  
   
  
     @IBOutlet weak var moviesTableView: UITableView!
@@ -46,9 +47,7 @@ class HomeView: UIViewController, UITableViewDataSource, HomeViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! CategoryRow
         cell.setGenre(genresList[indexPath.section])
-        cell.setOnClickListener(onClickListener: {(movieId:Int) in
-            self.goToMovieDetail(movieId)
-        })
+        cell.setClickDelegate(delegate: self)
         print("Section: \(indexPath.section)")
         return cell
     }
@@ -62,10 +61,19 @@ class HomeView: UIViewController, UITableViewDataSource, HomeViewDelegate {
         notDisplayedCell.setGenre(nil)
     }
     
+    func onClickItem(itemId: Int) {
+        goToMovieDetail(itemId)
+    }
+    
     private func goToMovieDetail(_ movieId: Int){
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let detailViewController = storyBoard.instantiateViewController(withIdentifier: "movieViewController") as! MovieDetailView
-        self.navigationController?.pushViewController(detailViewController, animated: true)
+        self.performSegue(withIdentifier: "goToMovieDetail", sender: movieId)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "MovieDetailView" {
+            let viewController = segue.destination as! MovieDetailView
+            viewController.movieId = sender as? Int
+        }
     }
 }
 

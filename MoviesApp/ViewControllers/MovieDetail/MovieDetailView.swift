@@ -9,5 +9,11 @@ import Foundation
 import UIKit
 
 class MovieDetailView: UIViewController {
+    var movieId: Int?
     
+    override func viewDidLoad() {
+        if let id = self.movieId {
+            print(id)
+        }
+    }
 }

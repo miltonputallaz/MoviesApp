@@ -15,7 +15,7 @@ class CategoryRow: UITableViewCell{
     @IBOutlet weak var moviesCollectionView: UICollectionView!
     private var movieRepository = MovieRepository.sharedInstance
     private var moviesCollection = [Movie]()
-    private var onClickItemListener: ((_ movieId: Int) -> Void)?
+    private var onClickDelegate: ClickItemDelegate?
     
     func setGenre(_ genre: Genre?){
         if let genreUnwrapped = genre {
@@ -26,8 +26,8 @@ class CategoryRow: UITableViewCell{
         }
     }
     
-    func setOnClickListener(onClickListener: @escaping (_ movieId: Int) -> Void){
-        self.onClickItemListener = onClickListener
+    func setClickDelegate(delegate: ClickItemDelegate){
+        self.onClickDelegate = delegate
     }
     
     private func getMoviesWithGenre(_ genreId: Int){
@@ -40,13 +40,22 @@ class CategoryRow: UITableViewCell{
         movieRepository.getDiscoverMovies(genreId: genreId, completionHandler: completionHandler)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let listener = self.onClickDelegate, let movieId = moviesCollection[indexPath.row
+        ].id  {
+            listener.onClickItem(itemId: movieId)
+        }
+
+    }
+    
+    
     private func updateCollectionView(){
         self.moviesCollectionView.reloadData()
     }
 }
 
 extension CategoryRow: UICollectionViewDataSource {
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return moviesCollection.count
     }
@@ -65,12 +74,6 @@ extension CategoryRow: UICollectionViewDataSource {
         cell.layer.cornerRadius = 10
         
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let listener = self.onClickItemListener, let movieId = moviesCollection[indexPath.row].id {
-            listener(movieId)
-        }
     }
     
 }

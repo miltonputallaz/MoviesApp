@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct MovieRepository {
     
@@ -25,5 +26,12 @@ struct MovieRepository {
         remoteRepository.getArrayOf(completion: completionHandler)
     }
     
+    func getMovieDetail(movieId: Int, completionHandler: @escaping (Movie?, BackendError?) -> ()){
+        remoteRepository.getMovieDetail(movieId: movieId, completion: completionHandler)
+    }
+    
+    func getMovieImageWith(imagePath path: String, completion: @escaping (UIImage?, BackendError?) -> ()){
+        remoteRepository.getImageFromUrl(imagePath: path, completion: completion)
+    }
     
 }

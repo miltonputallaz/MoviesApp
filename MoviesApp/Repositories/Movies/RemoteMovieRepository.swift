@@ -17,8 +17,8 @@ struct RemoteMovieRepository {
     private let url = ConfigUtils.infoForKey(ConfigKeys.baseUrlConfigName)
     private let apiKey = ConfigUtils.infoForKey(ConfigKeys.moviesApiKey)
     private let discoverMoviesEndpoint = "/discover/movie"
+    private let movieDetailEndpint = "/movie"
     private let movieGenresEndpoint = "/genre/movie/list"
-    
     
     private init(){
         
@@ -36,21 +36,21 @@ struct RemoteMovieRepository {
         }
     }
     
-    func getImageFromUrl(url: String,  completion: @escaping (UIImage?, BackendError?) -> Void) {
+    
+    func getMovieDetail(movieId: Int, completion: @escaping (Movie?, BackendError?) -> ()) {
+        if let unwrappedUrl = url, let unwrappedKey = apiKey{
+            var endpointUrl = "\(unwrappedUrl+movieDetailEndpint)/\(movieId)?api_key=\(unwrappedKey)"
+            print(endpointUrl)
+            genericRemoteRepository.getSingleEntity(url: endpointUrl, completion: completion)
+        }
+    }
+
+    
+    
+    func getImageFromUrl(imagePath path: String,  completion: @escaping (UIImage?, BackendError?) -> ()) {
         if let imageEndpoint = ConfigUtils.infoForKey(ConfigKeys.imagesMiniUrl),
            let apiKey = ConfigUtils.infoForKey(ConfigKeys.moviesApiKey){
-            AF.request("\(imageEndpoint+url)?api_key=\(apiKey)").responseImage { response in
-
-                switch response.result {
-                    case .success(let data):
-                        completion(data,nil)
-                        break
-                        
-                    case .failure(let error):
-                        completion(nil, BackendError())
-                }
-            }
-          
+            genericRemoteRepository.getImageFrom(url: "\(imageEndpoint+path)?api_key=\(apiKey)", completion: completion)
         }
     }
     

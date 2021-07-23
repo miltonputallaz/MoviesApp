@@ -67,7 +67,7 @@ extension CategoryRow: UICollectionViewDataSource {
             cell.movieTitle.text = title
         }
         if let url = movie.backdropPath {
-            RemoteMovieRepository.sharedInstance.getImageFromUrl(url: url){ image, error in
+            RemoteMovieRepository.sharedInstance.getImageFromUrl(imagePath: url){ image, error in
                 cell.movieImage.image = image
             }
         }

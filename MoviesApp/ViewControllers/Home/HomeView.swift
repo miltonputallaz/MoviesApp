@@ -18,6 +18,7 @@ class HomeView: UIViewController, UITableViewDataSource, ClickItemDelegate, Home
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = NSLocalizedString("Discover", comment: "Discover title")
         self.moviesTableView.delegate = self
         self.moviesTableView.dataSource = self
         presenter.setDelegateView(self)
@@ -70,7 +71,7 @@ class HomeView: UIViewController, UITableViewDataSource, ClickItemDelegate, Home
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "MovieDetailView" {
+        if segue.identifier == "goToMovieDetail" {
             let viewController = segue.destination as! MovieDetailView
             viewController.movieId = sender as? Int
         }

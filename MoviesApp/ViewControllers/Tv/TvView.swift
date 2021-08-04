@@ -1,26 +1,26 @@
 //
-//  ViewController.swift
+//  TvView.swift
 //  MoviesApp
 //
-//  Created by Milton Putallaz on 25/06/2021.
+//  Created by Milton Putallaz on 04/08/2021.
 //
 
+import Foundation
 import UIKit
 
-class HomeView: UIViewController, UITableViewDataSource, ClickItemDelegate, HomeViewDelegate {
-  
-  
- 
-    @IBOutlet weak var moviesTableView: UITableView!
+class TvView: UIViewController, UITableViewDataSource, ClickItemDelegate, TvViewDelegate {
     
-    private var presenter: HomePresenter = HomePresenter()
+    @IBOutlet weak var categoriesTableView: UITableView!
+    
+    
+    private var presenter: TvPresenter = TvPresenter()
     private var genresList = [Genre]()
         
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = NSLocalizedString("Discover", comment: "Discover title")
-        self.moviesTableView.delegate = self
-        self.moviesTableView.dataSource = self
+        self.categoriesTableView.delegate = self
+        self.categoriesTableView.dataSource = self
         presenter.setDelegateView(self)
         initializeView()
     }
@@ -31,7 +31,7 @@ class HomeView: UIViewController, UITableViewDataSource, ClickItemDelegate, Home
     
     func setGenres(_ genres: [Genre]) {
         genresList = genres
-        DispatchQueue.main.async { self.moviesTableView.reloadData() }
+        DispatchQueue.main.async { self.categoriesTableView.reloadData() }
     }
 
 
@@ -46,7 +46,7 @@ class HomeView: UIViewController, UITableViewDataSource, ClickItemDelegate, Home
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! CategoryRow
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tvCategoryCell", for: indexPath) as! TvCategoryRow
         cell.setGenre(genresList[indexPath.section])
         cell.setClickDelegate(delegate: self)
         print("Section: \(indexPath.section)")
@@ -58,7 +58,7 @@ class HomeView: UIViewController, UITableViewDataSource, ClickItemDelegate, Home
     }
     
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let notDisplayedCell = cell as! CategoryRow
+        let notDisplayedCell = cell as! TvCategoryRow
         notDisplayedCell.setGenre(nil)
     }
     
@@ -78,7 +78,7 @@ class HomeView: UIViewController, UITableViewDataSource, ClickItemDelegate, Home
     }
 }
 
-extension HomeView: UITableViewDelegate {
+extension TvView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let itemsPerScreen:CGFloat = 2
         let hardCodedPadding:CGFloat = 5

@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import AlamofireImage
 
-class CategoryRow: UITableViewCell{
+class MovieCategoryRow: UITableViewCell{
     
     @IBOutlet weak var moviesCollectionView: UICollectionView!
     private var movieRepository = MovieRepository.sharedInstance
@@ -54,7 +54,7 @@ class CategoryRow: UITableViewCell{
     }
 }
 
-extension CategoryRow: UICollectionViewDataSource {
+extension MovieCategoryRow: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return moviesCollection.count
@@ -78,7 +78,7 @@ extension CategoryRow: UICollectionViewDataSource {
     
 }
 
-extension CategoryRow: UICollectionViewDelegateFlowLayout {
+extension MovieCategoryRow: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let itemsPerRow:CGFloat = 2
         let hardCodedPadding:CGFloat = 5

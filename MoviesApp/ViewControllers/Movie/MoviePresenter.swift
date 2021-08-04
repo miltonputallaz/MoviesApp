@@ -7,12 +7,12 @@
 
 import Foundation
 
-class HomePresenter: HomePresenterProtocol {
+class MoviePresenter: MoviePresenterProtocol {
     
-    weak private var view: HomeViewDelegate?
+    weak private var view: MovieViewDelegate?
     private let movieRepo = MovieRepository.sharedInstance
     
-    func setDelegateView(_ view: HomeViewDelegate?){
+    func setDelegateView(_ view: MovieViewDelegate?){
         self.view = view
     }
     

@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol HomePresenterProtocol {
-    func setDelegateView(_ view: HomeViewDelegate?)
+protocol MoviePresenterProtocol {
+    func setDelegateView(_ view: MovieViewDelegate?)
     func getAvailableGenres()
 }

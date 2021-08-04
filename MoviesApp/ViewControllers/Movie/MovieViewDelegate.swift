@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol HomeViewDelegate: NSObjectProtocol {
+protocol MovieViewDelegate: NSObjectProtocol {
     func initializeView()
     func setGenres(_ genres: [Genre])
 }
